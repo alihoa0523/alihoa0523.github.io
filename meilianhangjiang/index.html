@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="美联航将复中美直飞航班 - 最新中美航线恢复资讯、直飞航班时刻表、机票预订指南及出行注意事项。">
+    <meta name="keywords" content="美联航,中美直飞,美联航复航,中美航班,美联航时刻表,美联航机票">
+    <title>美联航将复中美直飞 - 最新航班资讯与出行指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #003580; /* United Blue */
+            --secondary-color: #f1f5f9;
+            --accent-color: #e31c23; /* United Red */
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #002f6c 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* News Grid */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 5px solid var(--accent-color);
+            color: var(--text-main);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 180px;
+            background-color: #e2e8f0;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .news-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .read-more::after {
+            content: '→';
+            margin-left: 5px;
+            transition: transform 0.2s;
+        }
+
+        .read-more:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Route Info Section */
+        .route-section {
+            background-color: white;
+            padding: 3rem 0;
+            margin-bottom: 4rem;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .route-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .route-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .route-table th, .route-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .route-table th {
+            background-color: var(--secondary-color);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .route-table tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        /* Guide Section */
+        .guide-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .guide-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .guide-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guide-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .guide-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background: white;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background-color: #f8fafc;
+            color: var(--text-light);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .guide-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                </svg>
+                <span>UnitedFlightInfo</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#news">航班动态</a></li>
+                    <li><a href="#routes">航线时刻</a></li>
+                    <li><a href="#guide">出行指南</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>美联航将复中美直飞航班</h1>
+                <p>随着国际旅行需求回升，美联航宣布重启多条中美直飞航线，优化航班时刻，为旅客提供更便捷的往返体验。</p>
+                <div class="hero-tags">
+                    <span class="tag">直飞航班</span>
+                    <span class="tag">北京/上海</span>
+                    <span class="tag">旧金山/洛杉矶</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="news">
+            <h2 class="section-title">最新航班动态</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <img src="https://picsum.photos/seed/flight1/400/250" alt="美联航飞机" class="news-image">
+                    <div class="news-content">
+                        <div class="news-meta">2023年10月24日 · 航班资讯</div>
+                        <h3 class="news-title">美联航宣布恢复北京-旧金山直飞航班</h3>
+                        <p class="news-excerpt">美联航正式公布，将于近期恢复旧金山至北京的直飞航线，每日一班，旨在满足日益增长的商务及旅游出行需求。</p>
+                        <a href="#" class="read-more">阅读详情</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://picsum.photos/seed/flight2/400/250" alt="机场候机" class="news-image">
+                    <div class="news-content">
+                        <div class="news-meta">2023年10月20日 · 航班资讯</div>
+                        <h3 class="news-title">中美直飞航班运力提升计划</h3>
+                        <p class="news-excerpt">除了北京，美联航还将增加上海至旧金山和洛杉矶的运力，总座位数较去年同期增长约15%。</p>
+                        <a href="#" class="read-more">阅读详情</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://picsum.photos/seed/flight3/400/250" alt="登机牌" class="news-image">
+                    <div class="news-content">
+                        <div class="news-meta">2023年10月18日 · 机票预订</div>
+                        <h3 class="news-title">直飞航班票价趋势分析</h3>
+                        <p class="news-excerpt">随着航班恢复，直飞航班的票价逐渐回归理性。本文为您分析不同时段的票价波动及预订建议。</p>
+                        <a href="#" class="read-more">阅读详情</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="route-section" id="routes">
+            <div class="container">
+                <h2 class="section-title">复航航线时刻表</h2>
+                <div class="route-table-wrapper">
+                    <table class="route-table">
+                        <thead>
+                            <tr>
+                                <th>出发地</th>
+                                <th>目的地</th>
+                                <th>执飞机型</th>
+                                <th>每日班次</th>
+                                <th>预计起飞</th>
+                                <th>预计到达</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>北京 (PEK)</strong></td>
+                                <td><strong>旧金山 (SFO)</strong></td>
+                                <td>波音 777-300ER</td>
+                                <td>1</td>
+                                <td>22:30</td>
+                                <td>19:20 (+1)</td>
+                                <td><span class="status-badge status-active">正常运营</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>上海 (PVG)</strong></td>
+                                <td><strong>旧金山 (SFO)</strong></td>
+                                <td>波音 777-300ER</td>
+                                <td>1</td>
+                                <td>23:15</td>
+                                <td>20:00 (+1)</td>
+                                <td><span class="status-badge status-active">正常运营</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>上海 (PVG)</strong></td>
+                                <td><strong>洛杉矶 (LAX)</strong></td>
+                                <td>空客 A350-900</td>
+                                <td>1</td>
+                                <td>22:00</td>
+                                <td>18:45 (+1)</td>
+                                <td><span class="status-badge status-active">正常运营</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>洛杉矶 (LAX)</strong></td>
+                                <td><strong>上海 (PVG)</strong></td>
+                                <td>空客 A350-900</td>
+                                <td>1</td>
+                                <td>15:30</td>
+                                <td>次日 18:20</td>
+                                <td><span class="status-badge status-active">正常运营</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">* 表格信息仅供参考，具体时刻及机型请以美联航官网及官方APP最新公告为准。</p>
+            </div>
+        </section>
+
+        <section class="container" id="guide">
+            <h2 class="section-title">中美直飞出行指南</h2>
+            <div class="guide-section">
+                <article class="guide-card">
+                    <h3>✈️ 行前准备与证件</h3>
+                    <ul class="guide-list">
+                        <li>确认护照有效期：建议在行程日期前至少6个月有效。</li>
+                        <li>签证要求：确认您持有有效的中国护照及美国签证（B1/B2等）。</li>
+                        <li>入境卡：美国已取消纸质入境卡，改为电子系统，需提前填写或现场填写。</li>
+                        <li>疫苗接种：目前无需强制提供新冠疫苗接种证明。</li>
+                    </ul>
+                </article>
+
+                <article class="guide-card">
+                    <h3>🛫 航班须知</h3>
+                    <ul class="guide-list">
+                        <li>直飞优势：相比中转航班，直飞可节省约8-12小时的旅行时间。</li>
+                        <li>行李额度：美联航经济舱通常包含两件托运行李（23kg以内）。</li>
+                        <li>机上服务：全直飞航班提供机上餐食及娱乐系统。</li>
+                        <li>时差提醒：北京时间比旧金山时间早15小时（夏令时）或16小时（冬令时）。</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="container faq-section">
+            <h2 class="section-title" style="text-align: center; border: none; padding: 0;">常见问题 (FAQ)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">美联航目前有哪些主要的中美直飞航线？</div>
+                <div class="faq-answer">
+                    目前美联航主要运营北京-旧金山、上海-旧金山、上海-洛杉矶三条核心直飞航线。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">直飞航班和中转航班哪个更好？</div>
+                <div class="faq-answer">
+                    直飞航班最大的优势是节省时间和避免中转时的行李转运风险，适合时间紧张或商务旅客。中转航班通常价格更便宜。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">如何查询实时航班状态？</div>
+                <div class="faq-answer">
+                    您可以通过美联航官网、官方APP或航空公司客服热线输入航班号（如UA858）查询实时起飞、降落及延误信息。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">美联航的里程积分可以在哪些航线使用？</div>
+                <div class="faq-answer">
+                    美联航里程积分可用于兑换全球范围内的机票，包括中美直飞航线，但淡季兑换通常需要更多的里程数。
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.6;">
+                        本站致力于为用户提供最及时、准确的中美直飞航班资讯。数据来源美联航官方公告，仅供参考，不构成最终出行建议。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">航班查询</a></li>
+                        <li><a href="#">特价机票</a></li>
+                        <li><a href="#">机场信息</a></li>
+                        <li><a href="#">常见问题</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系方式</h4>
+                    <ul>
+                        <li>客服热线：1-800-864-8331</li>
+                        <li>商务合作：biz@unitedflight.example.com</li>
+                        <li>地址：北京市朝阳区航空大厦</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 UnitedFlightInfo. All Rights Reserved. 非官方网站，本站与United Airlines无直接隶属关系。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                
+                // Close other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== parent) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
