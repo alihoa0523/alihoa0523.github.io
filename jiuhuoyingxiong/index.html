@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>救火英雄票房-最新电影票房数据、排片走势与观影指南</title>
+    <meta name="description" content="本站提供救火英雄票房实时数据、每日排片情况及影片深度解析。关注影片市场表现，获取最新排片与观影建议。">
+    <meta name="keywords" content="救火英雄票房,救火英雄电影,电影票房数据,排片表,观影指南">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #b71c1c;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-main: #ffffff;
+            --text-muted: #b0b0b0;
+            --accent-gold: #ffc107;
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), var(--dark-bg)), 
+                        url('https://picsum.photos/seed/firefighter/1600/600') no-repeat center center/cover;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            background: rgba(211, 47, 47, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .card-meta {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            border-top: 1px solid #333;
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .card-footer span {
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Chart Section */
+        .chart-container {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 60px;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 300px;
+            background: repeating-linear-gradient(
+                45deg,
+                #2d2d2d,
+                #2d2d2d 10px,
+                #333 10px,
+                #333 20px
+            );
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        .chart-placeholder::after {
+            content: "票房走势图表区域";
+            font-size: 1.2rem;
+        }
+
+        /* Info Section */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .info-sidebar {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list a {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-list a:hover {
+            color: var(--primary-color);
+        }
+
+        .info-content h3 {
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        .info-content p {
+            margin-bottom: 16px;
+            color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none; /* Simplified for mobile */
+            }
+
+            .stats-bar {
+                gap: 24px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+                票房雷达
+            </div>
+            <nav class="nav-links">
+                <a href="#">首页</a>
+                <a href="#">实时榜单</a>
+                <a href="#">深度解析</a>
+                <a href="#">排片查询</a>
+                <a href="#">关于我们</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>救火英雄票房</h1>
+        <p>全方位追踪电影《救火英雄》的票房表现、市场数据及观众口碑，为您提供专业的观影决策参考。</p>
+        <a href="#data" class="btn-primary">查看实时数据</a>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value">¥ 1.2亿</div>
+            <div class="stat-label">累计票房 (参考)</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">3.2分</div>
+            <div class="stat-label">豆瓣评分</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">1,204场</div>
+            <div class="stat-label">单日排片</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">35%</div>
+            <div class="stat-label">上座率</div>
+        </div>
+    </div>
+
+    <main>
+        <!-- 数据分析板块 -->
+        <section id="data">
+            <div class="section-title">
+                <span>票房走势与市场分析</span>
+            </div>
+            <div class="chart-container">
+                <div class="chart-placeholder" title="票房走势图表区域">
+                    <!-- 此处为图表占位符，实际开发中可接入 ECharts 或 Chart.js -->
+                </div>
+            </div>
+            <div class="grid-layout">
+                <article class="card">
+                    <img src="https://picsum.photos/seed/fire1/400/250" alt="票房海报" class="card-img">
+                    <div class="card-body">
+                        <span class="card-tag">市场分析</span>
+                        <h3 class="card-title">救火英雄票房破亿背后</h3>
+                        <p class="card-desc">分析影片首周末的票房表现，探讨灾难片类型在市场中的竞争力以及观众对特效场面的反馈。</p>
+                        <div class="card-footer">
+                            <span>阅读全文 &rarr;</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://picsum.photos/seed/fire2/400/250" alt="排片海报" class="card-img">
+                    <div class="card-body">
+                        <span class="card-tag">排片建议</span>
+                        <h3 class="card-title">如何选择观影场次</h3>
+                        <p class="card-desc">根据目前的排片表和上座率，为您推荐最佳的观影时间段，避免拥挤并享受最佳视听体验。</p>
+                        <div class="card-footer">
+                            <span>阅读全文 &rarr;</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://picsum.photos/seed/fire3/400/250" alt="影评海报" class="card-img">
+                    <div class="card-body">
+                        <span class="card-tag">观众口碑</span>
+                        <h3 class="card-title">影评人眼中的救火英雄</h3>
+                        <p class="card-desc">汇总专业影评人对影片剧情、演技及制作水准的评价，帮助您理性判断是否值得走进影院。</p>
+                        <div class="card-footer">
+                            <span>阅读全文 &rarr;</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 影片信息与FAQ -->
+        <section class="info-grid">
+            <aside class="info-sidebar">
+                <div class="section-title" style="font-size: 1.2rem; margin-bottom: 16px;">相关资源</div>
+                <ul class="info-list">
+                    <li><a href="#">电影原声OST</a></li>
+                    <li><a href="#">幕后花絮视频</a></li>
+                    <li><a href="#">IMDb 页面</a></li>
+                    <li><a href="#">电影海报下载</a></li>
+                    <li><a href="#">周边商品推荐</a></li>
+                </ul>
+            </aside>
+            <div class="info-content">
+                <div class="section-title" style="font-size: 1.2rem;">常见问题解答 (FAQ)</div>
+                
+                <article style="margin-bottom: 24px;">
+                    <h3 style="color: white; margin-bottom: 8px;">Q: 《救火英雄》的最终票房是多少？</h3>
+                    <p style="color: #ccc;">根据历史数据，该片于2014年上映，最终累计票房约为1.2亿元人民币。具体数字可能因统计口径略有差异，但市场表现已趋于稳定。</p>
+                </article>
+
+                <article style="margin-bottom: 24px;">
+                    <h3 style="color: white; margin-bottom: 8px;">Q: 现在还能在哪里观看《救火英雄》？</h3>
+                    <p style="color: #ccc;">由于版权原因，目前该影片主要在部分正版视频平台提供点播服务。建议您访问主流视频网站的搜索栏，输入“救火英雄”查找正版资源。</p>
+                </article>
+
+                <article style="margin-bottom: 24px;">
+                    <h3 style="color: white; margin-bottom: 8px;">Q: 票房数据是如何统计的？</h3>
+                    <p style="color: #ccc;">票房数据通常由专业票务平台（如猫眼、灯塔）根据各影院的实时售票数据进行统计汇总，包括总票房、人次和排片量等关键指标。</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">关于我们</a>
+            <a href="#">免责声明</a>
+            <a href="#">联系合作</a>
+            <a href="#">隐私政策</a>
+        </div>
+        <p>&copy; 2023 票房雷达 - 专注电影市场数据服务</p>
+    </footer>
+
+</body>
+</html>
