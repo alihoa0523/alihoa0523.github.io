@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="卡牌游戏排行榜前十名 - 本站提供最新、最全的卡牌游戏排行榜单，涵盖策略卡牌、二次元卡牌、集换式卡牌等热门品类，助您挑选最适合的卡牌游戏。">
+    <meta name="keywords" content="卡牌游戏排行榜前十名,卡牌游戏推荐,手游卡牌,PC卡牌游戏,集换式卡牌,策略卡牌">
+    <title>卡牌游戏排行榜前十名 - 热门卡牌游戏推荐与评测指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: var(--card-bg);
+            padding: 20px 0;
+            margin-top: -30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: white;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 24px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        /* Ranking List */
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .rank-item {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .rank-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .rank-badge {
+            width: 50px;
+            height: 50px;
+            background: #e0e7ff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .rank-item:nth-child(1) .rank-badge { background: #fef3c7; color: #d97706; }
+        .rank-item:nth-child(2) .rank-badge { background: #f3f4f6; color: #4b5563; }
+        .rank-item:nth-child(3) .rank-badge { background: #ffedd5; color: #c2410c; }
+
+        .game-info {
+            flex: 1;
+        }
+
+        .game-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .game-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .platform-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: #f1f5f9;
+            color: var(--text-secondary);
+        }
+
+        .platform-tag.mobile { background: #dbeafe; color: #1e40af; }
+        .platform-tag.pc { background: #dcfce7; color: #166534; }
+        .platform-tag.web { background: #fef9c3; color: #854d0e; }
+
+        .game-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .rank-stats {
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .score {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Grid Section (Alternative Layout) */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-img {
+            height: 160px;
+            background-color: #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* Guide Section */
+        .guide-section {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            margin-top: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 24px;
+        }
+
+        .guide-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .guide-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .guide-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .guide-link::after {
+            content: '→';
+            margin-left: 4px;
+            transition: transform 0.2s;
+        }
+
+        .guide-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 0 10px;
+            }
+            
+            nav {
+                display: none; /* Simplified for static demo */
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .rank-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rank-stats {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: 16px;
+            }
+
+            .rank-header-mobile {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+
+            .rank-badge {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="#" class="logo">
+            <span>⚡</span> 游戏榜单
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">排行榜</a></li>
+                <li><a href="#">最新上架</a></li>
+                <li><a href="#">手游专区</a></li>
+                <li><a href="#">PC游戏</a></li>
+                <li><a href="#">下载指南</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="菜单">☰</button>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="container">
+        <h1>卡牌游戏排行榜前十名</h1>
+        <p>精选全球热门卡牌游戏，从策略烧脑到二次元收集，为您提供最权威的推荐与评测。</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Filter -->
+    <div class="filter-bar">
+        <button class="filter-btn active">综合推荐</button>
+        <button class="filter-btn">策略卡牌</button>
+        <button class="filter-btn">二次元</button>
+        <button class="filter-btn">集换式</button>
+        <button class="filter-btn">塔防</button>
+    </div>
+
+    <main>
+        <!-- Top 10 List -->
+        <section>
+            <h2 class="section-title">2024年热门卡牌游戏 TOP 10</h2>
+            <div class="ranking-list">
+                
+                <!-- Rank 1 -->
+                <article class="rank-item">
+                    <div class="rank-badge">1</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">万智牌：竞技场</h3>
+                                <span class="platform-tag pc">PC</span>
+                                <span class="platform-tag web">网页</span>
+                            </div>
+                            <p class="game-desc">Wizards of the Coast官方出品，拥有超过25年历史的集换式卡牌游戏。支持离线游玩，拥有海量的卡牌库和复杂的构筑体系，适合硬核策略玩家。</p>
+                            <div class="tags">
+                                <span class="tag">集换式</span>
+                                <span class="tag">策略</span>
+                                <span class="tag">PVP</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">9.8</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 2 -->
+                <article class="rank-item">
+                    <div class="rank-badge">2</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">炉石传说</h3>
+                                <span class="platform-tag mobile">手游</span>
+                                <span class="platform-tag pc">PC</span>
+                            </div>
+                            <p class="game-desc">暴雪出品，深受全球玩家喜爱的免费卡牌对战游戏。以魔兽世界为背景，玩法简洁易懂但深度极高，拥有庞大的竞技场和酒馆战棋模式。</p>
+                            <div class="tags">
+                                <span class="tag">快节奏</span>
+                                <span class="tag">娱乐</span>
+                                <span class="tag">PVP</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">9.5</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 3 -->
+                <article class="rank-item">
+                    <div class="rank-badge">3</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">原神：七圣召唤</h3>
+                                <span class="platform-tag mobile">手游</span>
+                                <span class="platform-tag pc">PC</span>
+                            </div>
+                            <p class="game-desc">米哈游开放世界冒险游戏中的内置卡牌玩法。基于元素反应机制的战斗系统，画风精美，角色建模高质量，深受二次元玩家喜爱。</p>
+                            <div class="tags">
+                                <span class="tag">二次元</span>
+                                <span class="tag">RPG</span>
+                                <span class="tag">元素反应</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">9.4</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 4 -->
+                <article class="rank-item">
+                    <div class="rank-badge">4</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">杀戮尖塔</h3>
+                                <span class="platform-tag mobile">手游</span>
+                                <span class="platform-tag pc">PC</span>
+                            </div>
+                            <p class="game-desc">以Roguelike为特色的卡牌构筑游戏。玩家在爬塔过程中不断强化手牌，通过精妙的出牌顺序和药水使用来击败强敌。节奏紧凑，耐玩性极高。</p>
+                            <div class="tags">
+                                <span class="tag">Roguelike</span>
+                                <span class="tag">肉鸽</span>
+                                <span class="tag">单机</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">9.3</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 5 -->
+                <article class="rank-item">
+                    <div class="rank-badge">5</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">崩坏：星穹铁道</h3>
+                                <span class="platform-tag mobile">手游</span>
+                                <span class="platform-tag pc">PC</span>
+                            </div>
+                            <p class="game-desc">米哈游旗下的3D回合制策略RPG。结合了太空探索与卡牌战斗，角色养成要素丰富，剧情演出宏大，是近年来最受期待的二次元卡牌游戏之一。</p>
+                            <div class="tags">
+                                <span class="tag">回合制</span>
+                                <span class="tag">太空</span>
+                                <span class="tag">养成</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">9.2</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 6 -->
+                <article class="rank-item">
+                    <div class="rank-badge">6</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">影之诗</h3>
+                                <span class="platform-tag mobile">手游</span>
+                                <span class="platform-tag pc">PC</span>
+                            </div>
+                            <p class="game-desc">Cygames开发，拥有精美插画和快节奏战斗的日本卡牌游戏。卡牌具有进化机制，战斗节奏极快，策略性体现在对进化时机的把握。</p>
+                            <div class="tags">
+                                <span class="tag">日系</span>
+                                <span class="tag">进化</span>
+                                <span class="tag">快节奏</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">9.0</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 7 -->
+                <article class="rank-item">
+                    <div class="rank-badge">7</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">漫威终极逆转</h3>
+                                <span class="platform-tag mobile">手游</span>
+                            </div>
+                            <p class="game-desc">由漫威与Riot Games联合开发的快节奏卡牌对战游戏。将传统卡牌与实时动作元素结合，玩法新颖，画面炫酷，深受漫威粉丝欢迎。</p>
+                            <div class="tags">
+                                <span class="tag">漫威</span>
+                                <span class="tag">动作</span>
+                                <span class="tag">快节奏</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">8.9</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 8 -->
+                <article class="rank-item">
+                    <div class="rank-badge">8</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">漫漫长夜</h3>
+                                <span class="platform-tag mobile">手游</span>
+                            </div>
+                            <p class="game-desc">一款融合了卡牌构建与生存要素的游戏。玩家需要在极寒的冬季中生存，通过打出卡牌来获取资源、抵御野兽和严寒。</p>
+                            <div class="tags">
+                                <span class="tag">生存</span>
+                                <span class="tag">策略</span>
+                                <span class="tag">单机</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">8.7</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 9 -->
+                <article class="rank-item">
+                    <div class="rank-badge">9</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">月圆之夜</h3>
+                                <span class="platform-tag mobile">手游</span>
+                            </div>
+                            <p class="game-desc">国产独立游戏代表作。以小红帽为原型，融合了Roguelike卡牌战斗与暗黑童话风格。关卡设计精妙，卡牌种类繁多，极具挑战性。</p>
+                            <div class="tags">
+                                <span class="tag">国产</span>
+                                <span class="tag">暗黑</span>
+                                <span class="tag">独立</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">8.6</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Rank 10 -->
+                <article class="rank-item">
+                    <div class="rank-badge">10</div>
+                    <div class="rank-header-mobile">
+                        <div class="game-info">
+                            <div class="game-header">
+                                <h3 class="game-title">秘境对决</h3>
+                                <span class="platform-tag mobile">手游</span>
+                            </div>
+                            <p class="game-desc">拥有顶级美术资源的卡牌对战游戏。强调战术配合与卡牌联动，拥有独特的“法力水晶”机制，为玩家提供了丰富的战术选择空间。</p>
+                            <div class="tags">
+                                <span class="tag">战术</span>
+                                <span class="tag">配合</span>
+                                <span class="tag">美术</span>
+                            </div>
+                        </div>
+                        <div class="rank-stats">
+                            <div class="score">8.5</div>
+                            <div class="score-label">综合评分</div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Selection Guide -->
+        <section class="guide-section">
+            <h2 class="section-title">如何选择适合你的卡牌游戏</h2>
+            <p>面对众多的卡牌游戏，您可以从以下几个方面进行筛选：</p>
+            <div class="guide-grid">
+                <div class="guide-item">
+                    <h3>偏好玩法类型</h3>
+                    <p>如果您喜欢快速对局，可以选择《炉石传说》或《漫威终极逆转》；如果您享受深度构筑和长线投入，推荐《万智牌：竞技场》或《杀戮尖塔》。</p>
+                    <a href="#" class="guide-link">查看更多玩法分类</a>
+                </div>
+                <div class="guide-item">
+                    <h3>画风与题材</h3>
+                    <p>二次元爱好者首选米哈游的《原神》或《崩坏：星穹铁道》；喜欢暗黑风格或国产独立游戏，可以尝试《月圆之夜》。</p>
+                    <a href="#" class="guide-link">浏览二次元专区</a>
+                </div>
+                <div class="guide-item">
+                    <h3>投入成本与时间</h3>
+                    <p>大多数现代卡牌游戏均为免费游玩（F2P），但部分付费内容较多。若偏好单机体验，推荐《杀戮尖塔》；若喜欢竞技排位，可选择《万智牌竞技场》。</p>
+                    <a href="#" class="guide-link">下载客户端指南</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section style="margin-top: 40px;">
+            <h2 class="section-title">常见问题 (FAQ)</h2>
+            <div class="faq-item">
+                <div class="faq-question">卡牌游戏排行榜的评分标准是什么？</div>
+                <div class="faq-answer">我们的评分综合考虑了游戏的可玩性、美术表现、社区活跃度、上手难度以及是否支持免费游玩等因素，力求为用户提供客观的参考。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">新手应该从哪款卡牌游戏开始玩？</div>
+                <div class="faq-answer">对于新手，推荐从《炉石传说》或《影之诗》开始，因为它们的规则相对简单，且有丰富的教学引导。如果您喜欢策略深度，《杀戮尖塔》是极佳的单机入门选择。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">这些游戏都需要联网吗？</div>
+                <div class="faq-answer">大部分竞技类卡牌游戏（如万智牌竞技场、炉石传说）需要联网进行对战。而《杀戮尖塔》、《月圆之夜》等单机Roguelike卡牌游戏支持离线游玩。</div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>关于本站</h4>
+                <ul>
+                    <li><a href="#">网站介绍</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">投稿指南</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>热门分类</h4>
+                <ul>
+                    <li><a href="#">策略卡牌</a></li>
+                    <li><a href="#">二次元卡牌</a></li>
+                    <li><a href="#">集换式卡牌</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>帮助中心</h4>
+                <ul>
+                    <li><a href="#">新手入门</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">版权声明</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 卡牌游戏排行榜前十名 - 版权所有</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 简单的交互逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ 折叠
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // 关闭其他
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+                // 切换当前
+                item.classList.toggle('active');
+            });
+        });
+
+        // 筛选按钮交互
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // 实际项目中这里会触发数据筛选
+            });
+        });
+
+        // 移动端菜单（简化版）
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        menuBtn.addEventListener('click', () => {
+            if (nav.style.display === 'block') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'block';
+                nav.style.position = 'absolute';
+                nav.style.top = '70px';
+                nav.style.left = '0';
+                nav.style.width = '100%';
+                nav.style.background = 'white';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            }
+        });
+    });
+</script>
+
+</body>
+  </html>
