@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="魔界online - 3D史诗级魔幻MMORPG网页游戏，自由转职、跨服战场、炫酷坐骑。在这里，你就是魔王，主宰魔界大陆的荣耀与战争。">
+    <meta name="keywords" content="魔界online,魔界网页游戏,魔界2,魔幻MMORPG,网页游戏下载,魔界ol">
+    <title>魔界online - 史诗级魔幻MMORPG网页游戏</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #8a2be2;
+            --secondary-color: #4b0082;
+            --accent-color: #ff0055;
+            --dark-bg: #0f0c1a;
+            --card-bg: #1a162b;
+            --text-main: #ffffff;
+            --text-muted: #b0a8c0;
+            --border-radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header & Nav */
+        header {
+            background: rgba(15, 12, 26, 0.95);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff0055, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-login {
+            padding: 8px 24px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://picsum.photos/seed/demonrealm/1920/1080') no-repeat center center/cover;
+            filter: brightness(0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            padding: 15px 40px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            border-color: var(--accent-color);
+        }
+
+        .btn-secondary {
+            padding: 15px 40px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Features Section */
+        .section {
+            padding: 80px 20px;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* Class System */
+        .class-section {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #1a162b 100%);
+        }
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .class-card {
+            position: relative;
+            height: 350px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .class-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .class-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .class-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .class-card:hover .class-overlay {
+            background: linear-gradient(to top, rgba(138, 43, 226, 0.9), transparent);
+        }
+
+        .class-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .class-title {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Server List */
+        .server-list {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .server-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.2);
+        }
+
+        .server-tabs button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            margin-left: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            padding-bottom: 5px;
+        }
+
+        .server-tabs button.active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .server-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .server-table th, .server-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .server-table th {
+            color: var(--text-muted);
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        .server-name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-online { background-color: #00ff88; box-shadow: 0 0 5px #00ff88; }
+        .status-full { background-color: #ffaa00; }
+        .status-offline { background-color: #666; }
+
+        .btn-server {
+            padding: 5px 15px;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .btn-server:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #05040a;
+            padding: 60px 20px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 15px;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #555;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 36px; }
+            .class-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-info p { margin: 15px auto; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">魔界online</a>
+            <nav class="nav-links">
+                <a href="#features">游戏特色</a>
+                <a href="#classes">职业介绍</a>
+                <a href="#servers">开服信息</a>
+                <a href="#news">最新动态</a>
+            </nav>
+            <a href="#" class="btn-login">立即登录</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>重返魔界，主宰荣耀</h1>
+                <p>史诗级3D魔幻MMORPG，千人同屏跨服争霸。在这里，你将化身魔界领主，召唤神兽，组建军团，书写属于你的黑暗传奇。</p>
+                <div class="cta-group">
+                    <a href="#" class="btn-primary">免费下载游戏</a>
+                    <a href="#" class="btn-secondary">观看宣传片</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="section-header">
+                <h2>核心特色</h2>
+                <p style="color: var(--text-muted);">沉浸式魔幻体验，拒绝枯燥，只留极致战斗</p>
+            </div>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">⚔️</div>
+                    <h3>爽快战斗系统</h3>
+                    <p>独创连击机制与瞬时爆发技能，打击感极强。告别站桩输出，享受指尖上的热血厮杀。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🐉</div>
+                    <h3>自由坐骑系统</h3>
+                    <p>从烈焰战马到虚空巨龙，数百种坐骑任你收集。不仅是代步工具，更是战力的象征。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🏰</div>
+                    <h3>万人同屏攻城</h3>
+                    <p>参与全服最大的PVP战役，攻占主城要塞。在千军万马中冲锋陷阵，夺取至高荣耀。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">💍</div>
+                    <h3>唯美时装外观</h3>
+                    <p>数百套精致时装，涵盖古风、机甲、暗黑等多种风格。打造独一无二的角色形象。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Class Section -->
+        <section id="classes" class="section class-section">
+            <div class="section-header">
+                <h2>英雄职业</h2>
+                <p style="color: var(--text-muted);">选择你的宿命，踏上征服之路</p>
+            </div>
+            <div class="class-grid">
+                <div class="class-card">
+                    <img src="https://picsum.photos/seed/warrior/400/500" alt="魔剑士">
+                    <div class="class-overlay">
+                        <div class="class-name">魔剑士</div>
+                        <div class="class-title">近战 · 爆发 · 持久战</div>
+                    </div>
+                </div>
+                <div class="class-card">
+                    <img src="https://picsum.photos/seed/mage/400/500" alt="元素法师">
+                    <div class="class-overlay">
+                        <div class="class-name">元素法师</div>
+                        <div class="class-title">远程 · 范围 · 控场</div>
+                    </div>
+                </div>
+                <div class="class-card">
+                    <img src="https://picsum.photos/seed/archer/400/500" alt="暗影猎手">
+                    <div class="class-overlay">
+                        <div class="class-name">暗影猎手</div>
+                        <div class="class-title">敏捷 · 刺杀 · 隐形</div>
+                    </div>
+                </div>
+                <div class="class-card">
+                    <img src="https://picsum.photos/seed/priest/400/500" alt="圣光牧师">
+                    <div class="class-overlay">
+                        <div class="class-name">圣光牧师</div>
+                        <div class="class-title">辅助 · 治疗 · 坦克</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Server Section -->
+        <section id="servers" class="section">
+            <div class="section-header">
+                <h2>开服信息</h2>
+                <p style="color: var(--text-muted);">选择你的战场，与兄弟并肩作战</p>
+            </div>
+            <div class="server-list">
+                <div class="server-header">
+                    <h3>当前开服列表</h3>
+                    <div class="server-tabs">
+                        <button class="active">全部</button>
+                        <button>新区</button>
+                        <button>回流</button>
+                    </div>
+                </div>
+                <table class="server-table">
+                    <thead>
+                        <tr>
+                            <th>服务器名称</th>
+                            <th>状态</th>
+                            <th>当前人数</th>
+                            <th>新区时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="server-name">魔界·破晓新区</td>
+                            <td><span class="status-dot status-online"></span>火爆中</td>
+                            <td>12,450</td>
+                            <td>今日 10:00</td>
+                            <td><button class="btn-server">立即注册</button></td>
+                        </tr>
+                        <tr>
+                            <td class="server-name">魔界·荣耀回归</td>
+                            <td><span class="status-dot status-full"></span>名额紧张</td>
+                            <td>8,920</td>
+                            <td>10月15日</td>
+                            <td><button class="btn-server">立即注册</button></td>
+                        </tr>
+                        <tr>
+                            <td class="server-name">魔界·神域公测</td>
+                            <td><span class="status-dot status-online"></span>畅玩中</td>
+                            <td>15,680</td>
+                            <td>9月01日</td>
+                            <td><button class="btn-server">立即注册</button></td>
+                        </tr>
+                        <tr>
+                            <td class="server-name">魔界·龙魂服</td>
+                            <td><span class="status-dot status-offline"></span>维护中</td>
+                            <td>-</td>
+                            <td>待定</td>
+                            <td><button class="btn-server" disabled>暂未开放</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- News/Events Section -->
+        <section id="news" class="section">
+            <div class="section-header">
+                <h2>最新动态</h2>
+            </div>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <h3 style="margin-bottom:10px; font-size:18px;">【活动】双倍经验开启，助你快速升级</h3>
+                    <p style="font-size:14px; color:var(--text-muted); margin-bottom:15px;">即日起至本月底，全服开启双倍经验活动，参与活动即可领取专属称号。</p>
+                    <a href="#" style="color:var(--accent-color); font-size:14px;">查看详情 &rarr;</a>
+                </article>
+                <article class="feature-card">
+                    <h3 style="margin-bottom:10px; font-size:18px;">【更新】新版本“深渊巨兽”即将上线</h3>
+                    <p style="font-size:14px; color:var(--text-muted); margin-bottom:15px;">全新副本BOSS“深渊巨兽”登场，掉落传说级装备，准备好迎接挑战了吗？</p>
+                    <a href="#" style="color:var(--accent-color); font-size:14px;">查看详情 &rarr;</a>
+                </article>
+                <article class="feature-card">
+                    <h3 style="margin-bottom:10px; font-size:18px;">【公告】国庆活动期间客服在线时间调整</h3>
+                    <p style="font-size:14px; color:var(--text-muted); margin-bottom:15px;">为应对国庆高峰期，客服团队将延长在线时间，请玩家耐心等待。</p>
+                    <a href="#" style="color:var(--accent-color); font-size:14px;">查看详情 &rarr;</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <a href="#" class="logo">魔界online</a>
+                <p>魔界online是一款基于Web技术的3D魔幻MMORPG游戏。我们致力于为玩家提供最纯粹、最热血的魔幻战斗体验。无需下载，即点即玩，随时随地享受战斗乐趣。</p>
+            </div>
+            <div class="footer-links">
+                <h4>游戏指南</h4>
+                <ul>
+                    <li><a href="#">新手入门</a></li>
+                    <li><a href="#">职业攻略</a></li>
+                    <li><a href="#">副本攻略</a></li>
+                    <li><a href="#">装备图鉴</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">公司简介</a></li>
+                    <li><a href="#">加入我们</a></li>
+                    <li><a href="#">联系方式</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>关注我们</h4>
+                <ul>
+                    <li><a href="#">官方微博</a></li>
+                    <li><a href="#">官方微信公众号</a></li>
+                    <li><a href="#">玩家QQ群</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 魔界online Game Studio. All Rights Reserved. 仅供演示使用，非官方真实网站。
+        </div>
+    </footer>
+
+</body>
+  </html>
