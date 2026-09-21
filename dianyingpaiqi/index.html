@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="电影排期查询与影院资讯平台，提供最新上映电影时间表、场次预订信息、票价优惠及影评推荐。">
+    <meta name="keywords" content="电影排期,电影时间表,影院排片,最新上映电影,电影票预订">
+    <title>电影排期-最新影院上映时间表与观影指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #e50914;
+            --primary-hover: #b20710;
+            --bg-dark: #141414;
+            --bg-card: #1f1f1f;
+            --text-main: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-green: #46d369;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-main);
+        }
+
+        .search-bar {
+            display: flex;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .search-bar input {
+            border: none;
+            padding: 8px 12px;
+            background: transparent;
+            color: white;
+            outline: none;
+            width: 200px;
+        }
+
+        .search-bar button {
+            border: none;
+            background: #444;
+            color: white;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+
+        /* Main Layout */
+        main {
+            flex: 1;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            width: 100%;
+            padding: var(--spacing-unit);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 32px;
+            background: linear-gradient(to top, var(--bg-dark), transparent), url('https://picsum.photos/seed/cinema/1200/400') center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .hero-content {
+            padding: 40px;
+            max-width: 600px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+
+        .hero-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Section Title */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #333;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+        }
+
+        .view-all {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .view-all:hover {
+            color: var(--text-main);
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            background-color: #333;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            background-color: var(--text-main);
+            color: var(--bg-dark);
+            font-weight: bold;
+        }
+
+        .tab:hover:not(.active) {
+            background-color: #444;
+        }
+
+        /* Movie Grid */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .movie-card {
+            background-color: var(--bg-card);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .poster-wrapper {
+            position: relative;
+            padding-top: 150%; /* 2:3 Aspect Ratio */
+            background-color: #000;
+        }
+
+        .poster-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rating-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: var(--accent-green);
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .movie-info {
+            padding: 12px;
+        }
+
+        .movie-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .movie-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .duration {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tags {
+            margin-top: 8px;
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            border: 1px solid #444;
+            border-radius: 2px;
+            color: var(--text-secondary);
+        }
+
+        /* Schedule Section */
+        .schedule-container {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 48px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table th {
+            text-align: left;
+            padding: 12px 16px;
+            color: var(--text-secondary);
+            font-weight: normal;
+            border-bottom: 1px solid #333;
+            font-size: 14px;
+        }
+
+        .schedule-table td {
+            padding: 16px;
+            border-bottom: 1px solid #333;
+            font-size: 14px;
+        }
+
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .schedule-table tr:hover td {
+            background-color: #2a2a2a;
+        }
+
+        .cinema-name {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .showtime-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .showtime-btn {
+            padding: 6px 12px;
+            background-color: #333;
+            color: white;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .showtime-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .showtime-btn.vip {
+            background-color: #2c1a1a;
+            border: 1px solid #5e1e1e;
+        }
+
+        /* Info Section */
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .info-card {
+            background-color: var(--bg-card);
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .faq-item {
+            margin-bottom: 16px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 16px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: none;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.2s;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f0f0f;
+            padding: 48px 0 24px;
+            margin-top: auto;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 16px;
+                gap: 16px;
+            }
+
+            nav ul {
+                gap: 16px;
+                font-size: 14px;
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .movie-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .movie-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">影<span>讯排期</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">正在热映</a></li>
+                    <li><a href="#">即将上映</a></li>
+                    <li><a href="#">IMAX/杜比</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索电影、影院...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-tag">本周热门推荐</span>
+                <h1>星际穿越：重映版</h1>
+                <p>重温诺兰经典，感受跨越时空的父爱与宇宙奥秘。IMAX激光版本震撼登陆全国院线。</p>
+                <div>
+                    <a href="#schedule" class="btn btn-primary">查看排期</a>
+                    <a href="#" class="btn btn-outline">购票选座</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="tab active">全部</div>
+            <div class="tab">动作</div>
+            <div class="tab">科幻</div>
+            <div class="tab">剧情</div>
+            <div class="tab">动画</div>
+            <div class="tab">悬疑</div>
+        </div>
+
+        <!-- Movie List -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">今日热映</h2>
+                <a href="#" class="view-all">更多电影 &gt;</a>
+            </div>
+            
+            <div class="movie-grid">
+                <!-- Movie 1 -->
+                <article class="movie-card">
+                    <div class="poster-wrapper">
+                        <img src="https://picsum.photos/seed/movie1/300/450" alt="电影海报">
+                        <div class="rating-badge">9.2</div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">深海探险</h3>
+                        <div class="movie-meta">
+                            <span class="duration">⏱ 128分钟</span>
+                            <span>2D/IMAX</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">冒险</span>
+                            <span class="tag">科幻</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Movie 2 -->
+                <article class="movie-card">
+                    <div class="poster-wrapper">
+                        <img src="https://picsum.photos/seed/movie2/300/450" alt="电影海报">
+                        <div class="rating-badge">8.5</div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">午夜审判</h3>
+                        <div class="movie-meta">
+                            <span class="duration">⏱ 110分钟</span>
+                            <span>3D</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">悬疑</span>
+                            <span class="tag">惊悚</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Movie 3 -->
+                <article class="movie-card">
+                    <div class="poster-wrapper">
+                        <img src="https://picsum.photos/seed/movie3/300/450" alt="电影海报">
+                        <div class="rating-badge">7.8</div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">都市传说</h3>
+                        <div class="movie-meta">
+                            <span class="duration">⏱ 95分钟</span>
+                            <span>2D</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">剧情</span>
+                            <span class="tag">爱情</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Movie 4 -->
+                <article class="movie-card">
+                    <div class="poster-wrapper">
+                        <img src="https://picsum.photos/seed/movie4/300/450" alt="电影海报">
+                        <div class="rating-badge">9.0</div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">极速追击</h3>
+                        <div class="movie-meta">
+                            <span class="duration">⏱ 135分钟</span>
+                            <span>杜比全景声</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">动作</span>
+                            <span class="tag">赛车</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Movie 5 -->
+                <article class="movie-card">
+                    <div class="poster-wrapper">
+                        <img src="https://picsum.photos/seed/movie5/300/450" alt="电影海报">
+                        <div class="rating-badge">8.1</div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">魔法学院</h3>
+                        <div class="movie-meta">
+                            <span class="duration">⏱ 120分钟</span>
+                            <span>2D/3D</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">动画</span>
+                            <span class="tag">奇幻</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Movie 6 -->
+                <article class="movie-card">
+                    <div class="poster-wrapper">
+                        <img src="https://picsum.photos/seed/movie6/300/450" alt="电影海报">
+                        <div class="rating-badge">7.5</div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">最后的防线</h3>
+                        <div class="movie-meta">
+                            <span class="duration">⏱ 108分钟</span>
+                            <span>2D</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">战争</span>
+                            <span class="tag">历史</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Cinema Schedule -->
+        <section id="schedule">
+            <div class="section-header">
+                <h2 class="section-title">影院排期</h2>
+                <a href="#" class="view-all">选择影院 &gt;</a>
+            </div>
+
+            <div class="schedule-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th width="25%">影院名称</th>
+                            <th width="40%">正在热映</th>
+                            <th width="35%">场次时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="cinema-name">万达影城（CBD店）</span>
+                                <span style="color:var(--accent-green); font-size:12px;">● 有票</span>
+                            </td>
+                            <td>
+                                <div style="font-size:13px; margin-bottom:4px;">星际穿越：重映版</div>
+                                <div style="font-size:12px; color:var(--text-secondary);">IMAX 3D</div>
+                            </td>
+                            <td>
+                                <div class="showtime-list">
+                                    <button class="showtime-btn">10:30</button>
+                                    <button class="showtime-btn">13:45</button>
+                                    <button class="showtime-btn">16:20</button>
+                                    <button class="showtime-btn vip">18:00 (VIP)</button>
+                                    <button class="showtime-btn">21:15</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="cinema-name">百老汇电影中心</span>
+                                <span style="color:var(--accent-green); font-size:12px;">● 有票</span>
+                            </td>
+                            <td>
+                                <div style="font-size:13px; margin-bottom:4px;">深海探险</div>
+                                <div style="font-size:12px; color:var(--text-secondary);">2D国语</div>
+                            </td>
+                            <td>
+                                <div class="showtime-list">
+                                    <button class="showtime-btn">11:00</button>
+                                    <button class="showtime-btn">14:30</button>
+                                    <button class="showtime-btn">17:00</button>
+                                    <button class="showtime-btn">19:30</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="cinema-name">卢米埃影城</span>
+                                <span style="color:orange; font-size:12px;">● 仅剩少量</span>
+                            </td>
+                            <td>
+                                <div style="font-size:13px; margin-bottom:4px;">极速追击</div>
+                                <div style="font-size:12px; color:var(--text-secondary);">杜比全景声</div>
+                            </td>
+                            <td>
+                                <div class="showtime-list">
+                                    <button class="showtime-btn">12:30</button>
+                                    <button class="showtime-btn">15:40</button>
+                                    <button class="showtime-btn">18:50</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="cinema-name">CGV影城（万象城店）</span>
+                                <span style="color:#666; font-size:12px;">● 已售罄</span>
+                            </td>
+                            <td>
+                                <div style="font-size:13px; margin-bottom:4px;">魔法学院</div>
+                                <div style="font-size:12px; color:var(--text-secondary);">4DX</div>
+                            </td>
+                            <td>
+                                <div class="showtime-list">
+                                    <button class="showtime-btn" style="background:#333; color:#555; cursor:not-allowed;">13:00</button>
+                                    <button class="showtime-btn" style="background:#333; color:#555; cursor:not-allowed;">15:00</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FAQ & Info -->
+        <section class="info-section">
+            <div class="info-card">
+                <h3>常见问题 (FAQ)</h3>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        如何查询最新的电影排期？
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        您可以在首页顶部使用搜索框输入电影名称，或者直接点击“正在热映”标签页查看所有电影的排片情况。
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        影院票务系统是否支持在线选座？
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        是的，本站提供的排期链接可直接跳转至各大票务平台的购票页面，支持在线选座和电子票服务。
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        IMAX和普通3D有什么区别？
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        IMAX拥有更大的银幕、更清晰的画质和更震撼的音效系统，通常比普通3D电影提供更沉浸的观影体验。
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>观影小贴士</h3>
+                <ul style="font-size:14px; color:var(--text-secondary); padding-left:20px;">
+                    <li style="margin-bottom:12px;">建议提前30分钟到达影院，以便完成取票和安检流程。</li>
+                    <li style="margin-bottom:12px;">观影时请将手机调至静音或震动模式，以免影响他人。</li>
+                    <li style="margin-bottom:12px;">部分特效大片（如IMAX）建议选择前排中间位置以获得最佳体验。</li>
+                    <li style="margin-bottom:12px;">影院通常提供爆米花、饮料等零食服务，部分场次禁止外带食品。</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo">影<span>讯排期</span></div>
+                <p style="color:var(--text-secondary); font-size:13px; margin-top:12px;">
+                    专注于提供最准确、最及时的电影排期查询服务，助您不错过任何一部精彩影片。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>快速导航</h4>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">正在热映</a></li>
+                    <li><a href="#">即将上映</a></li>
+                    <li><a href="#">影城地图</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>帮助中心</h4>
+                <ul>
+                    <li><a href="#">购票指南</a></li>
+                    <li><a href="#">会员权益</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">联系客服</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <ul>
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">新浪微博</a></li>
+                    <li><a href="#">豆瓣小组</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 影讯排期平台. All Rights Reserved. 本站数据仅供参考，具体场次以影院实际为准。
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            element.classList.toggle('open');
+        }
+
+        // Simple tab switching simulation
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+    </script>
+</body>
+  </html>
