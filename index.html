@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="逻辑驱动 - 系统化思维训练与逻辑分析工具平台。提供逻辑谬误识别、批判性思维指南、演绎推理方法及复杂问题解决策略，助您建立理性决策能力。">
+    <meta name="keywords" content="逻辑驱动, 批判性思维, 逻辑谬误, 演绎推理, 系统化思维, 决策分析">
+    <title>逻辑驱动 - 系统化思维训练与逻辑分析工具</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --container: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-sub { color: var(--text-sub); }
+        .mt-2 { margin-top: 1rem; }
+        .mb-2 { margin-bottom: 1rem; }
+
+        /* Header */
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-sub);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn-cta {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            background: #dbeafe;
+            color: var(--primary-dark);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Core Concepts Grid */
+        .concepts {
+            background: var(--bg-card);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--text-sub);
+            margin-bottom: 48px;
+            max-width: 600px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-body);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: #eff6ff;
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* Workflow Section */
+        .workflow {
+            background: #1e293b;
+            color: white;
+        }
+
+        .workflow .section-title { color: white; }
+        .workflow .section-desc { color: #94a3b8; }
+
+        .step-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .step-item {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .step-item p {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .workflow::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: #334155;
+            z-index: 1;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--bg-body);
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px;
+            color: var(--text-sub);
+            display: none;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .btn-white:hover {
+            background: #f1f5f9;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h5 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .step-list { grid-template-columns: 1fr; gap: 40px; }
+            .workflow::before { display: none; }
+            .header-inner { flex-direction: column; height: auto; padding: 15px 0; gap: 15px; }
+            nav ul { gap: 15px; font-size: 0.9rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <span>逻辑驱动</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#concepts">核心概念</a></li>
+                    <li><a href="#workflow">方法论</a></li>
+                    <li><a href="#tools">实用工具</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <a href="#tools" class="btn-cta">开始训练</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-tags">
+                    <span class="tag">批判性思维</span>
+                    <span class="tag">系统化决策</span>
+                    <span class="tag">逻辑谬误识别</span>
+                </div>
+                <h1>用逻辑驱动决策，<br>摆脱思维误区与情绪干扰</h1>
+                <p>逻辑驱动不仅仅是推理规则，更是一种思维方式。我们提供系统化的逻辑分析框架，帮助您在复杂环境中识别真相、规避陷阱，做出理性且高效的决策。</p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="#concepts" class="btn-cta">了解核心框架</a>
+                    <a href="#workflow" class="btn-cta" style="background: white; color: var(--primary); border: 2px solid var(--primary);">查看工作流</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Concepts -->
+        <section id="concepts" class="section-padding concepts">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">逻辑驱动的三大基石</h2>
+                    <p class="section-desc">构建理性思维大厦需要理解基础概念，这是避免无效争论和错误决策的前提。</p>
+                </div>
+                <div class="grid-3">
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        </div>
+                        <h3>演绎推理</h3>
+                        <p>从一般性原理出发，推导出具体结论的过程。这是逻辑链条最严谨的形式，确保前提为真时结论必然为真。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        </div>
+                        <h3>归纳推理</h3>
+                        <p>从个别事实中概括出一般规律。虽然结论具有或然性，但它是科学发现和经验总结的主要手段。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3>批判性思维</h3>
+                        <p>对思维过程本身进行反思和评估。它要求我们审视论据的有效性、论证的结构以及潜在的偏见。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section id="workflow" class="section-padding workflow">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">逻辑驱动决策工作流</h2>
+                    <p class="section-desc">当面对复杂问题或重大决策时，遵循以下步骤可以有效提高判断的准确性。</p>
+                </div>
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h4>定义问题</h4>
+                        <p>明确核心议题，区分事实与观点，避免被情绪裹挟。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h4>收集证据</h4>
+                        <p>寻找多维度的数据支持，检查来源的可靠性与客观性。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h4>构建论证</h4>
+                        <p>搭建逻辑框架，检查是否存在逻辑谬误（如滑坡谬误、稻草人谬误）。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <h4>评估结论</h4>
+                        <p>基于证据强度和逻辑严密性，做出理性判断并制定行动方案。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools / Resources -->
+        <section id="tools" class="section-padding">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">实用逻辑分析工具</h2>
+                    <p class="section-desc">掌握这些工具，让逻辑分析变得可视化和可操作。</p>
+                </div>
+                <div class="grid-3">
+                    <article class="card" style="border-left: 4px solid var(--primary);">
+                        <h3>MECE 原则</h3>
+                        <p class="mb-2 text-sub">相互独立，完全穷尽。</p>
+                        <p>在分析问题时，将整体分解为互不重叠的子集，确保没有遗漏，也没有重复计算。这是金字塔原理的核心基础。</p>
+                    </article>
+                    <article class="card" style="border-left: 4px solid #10b981;">
+                        <h3>5 Whys 分析法</h3>
+                        <p class="mb-2 text-sub">连续追问五个为什么。</p>
+                        <p>通过连续追问“为什么”，穿透现象表象，找到问题的根本原因，而非仅仅解决表面症状。</p>
+                    </article>
+                    <article class="card" style="border-left: 4px solid #f59e0b;">
+                        <h3>第一性原理</h3>
+                        <p class="mb-2 text-sub">回归事物最基本的条件。</p>
+                        <p>不依赖类比或经验，而是将问题拆解为最基本的真理，然后从这些真理出发重新构建解决方案。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section-padding faq">
+            <div class="container" style="max-width: 800px;">
+                <div class="text-center">
+                    <h2 class="section-title">常见问题</h2>
+                    <p class="section-desc">关于逻辑驱动思维的常见疑问解答。</p>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">逻辑驱动是否意味着必须冷血无情？</div>
+                    <div class="faq-answer">
+                        <p>并非如此。逻辑驱动侧重于决策过程的理性与客观，而情感和价值观依然是决策的重要考量因素。真正的逻辑驱动是在充分理性分析的基础上，结合人文关怀做出选择。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何快速识别他人论证中的逻辑谬误？</div>
+                    <div class="faq-answer">
+                        <p>建议学习常见的逻辑谬误列表（如人身攻击、诉诸权威、虚假两难等）。在倾听时，不要急于反驳，而是先标记出对方的论据和结论，检查两者之间是否存在跳跃或依赖。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">逻辑思维训练需要多长时间见效？</div>
+                    <div class="faq-answer">
+                        <p>逻辑思维是一种肌肉，需要通过持续练习来强化。通常每天进行简单的逻辑谜题或写作训练，持续1-3个月即可观察到思维清晰度的明显提升。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section-padding cta-section">
+            <div class="container">
+                <h2>准备好升级你的思维方式了吗？</h2>
+                <p>从今天开始，用逻辑驱动你的生活与工作，做出更明智的选择。</p>
+                <a href="#" class="btn-white">免费开始逻辑训练</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px; color: white;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        <span>逻辑驱动</span>
+                    </div>
+                    <p>致力于推广理性思维与批判性思维教育，帮助个人和团队提升决策质量与沟通效率。</p>
+                </div>
+                <div class="footer-col">
+                    <h5>核心概念</h5>
+                    <ul>
+                        <li><a href="#">演绎推理</a></li>
+                        <li><a href="#">归纳推理</a></li>
+                        <li><a href="#">逻辑谬误</a></li>
+                        <li><a href="#">系统思维</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>资源</h5>
+                    <ul>
+                        <li><a href="#">逻辑测试</a></li>
+                        <li><a href="#">思维模型库</a></li>
+                        <li><a href="#">阅读指南</a></li>
+                        <li><a href="#">工具下载</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>关于我们</h5>
+                    <ul>
+                        <li><a href="#">团队介绍</a></li>
+                        <li><a href="#">联系合作</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">使用条款</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 逻辑驱动平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // Simple FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
