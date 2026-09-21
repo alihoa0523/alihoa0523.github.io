@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影二次曝光 - 经典悬疑剧情片深度解析与观影指南</title>
+    <meta name="description" content="本站提供电影《二次曝光》的深度影评、剧情解析、幕后制作揭秘及观看渠道推荐，带您重温范冰冰、冯小刚主演的悬疑佳作。">
+    <meta name="keywords" content="电影二次曝光, 二次曝光影评, 二次曝光剧情, 范冰冰冯小刚电影, 悬疑电影推荐">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #d32f2f;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        .search-btn {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transform: scale(1.05);
+            transition: transform 10s ease;
+        }
+
+        .hero:hover .hero-bg {
+            transform: scale(1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .view-more {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .view-more:hover {
+            color: var(--accent-color);
+        }
+
+        /* Movie Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .info-item span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Review List */
+        .review-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .review-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .review-content {
+            padding: 24px;
+        }
+
+        .review-meta {
+            font-size: 12px;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .review-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .review-excerpt {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .review-tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 12px;
+            background: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* Sidebar */
+        .sidebar-widget {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .rank-list li {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .rank-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rank-num {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ccc;
+            width: 25px;
+            margin-right: 12px;
+            font-style: italic;
+        }
+
+        .rank-list li:nth-child(1) .rank-num { color: #ff4757; }
+        .rank-list li:nth-child(2) .rank-num { color: #ff7f50; }
+        .rank-list li:nth-child(3) .rank-num { color: #ffa502; }
+
+        .rank-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag-cloud a {
+            font-size: 13px;
+            padding: 6px 14px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .tag-cloud a:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 15px;
+            background-color: #fff;
+        }
+
+        .faq-question:hover {
+            background-color: #fafafa;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: none;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 10px;
+            padding-top: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: rgba(255,255,255,0.7);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero {
+                height: 400px;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">光影<span>解析</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">深度影评</a></li>
+                    <li><a href="#">影片库</a></li>
+                    <li><a href="#">导演专题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="https://picsum.photos/seed/movie2/1600/900" alt="二次曝光电影海报背景" class="hero-bg">
+            <div class="container hero-content">
+                <span class="hero-tag">年度悬疑佳作</span>
+                <h1>电影二次曝光</h1>
+                <p>重温2012年由冯小刚监制、范冰冰与冯绍峰联袂主演的经典悬疑剧情片。探索记忆与现实的交错，解构光影下的双重人格。</p>
+                <a href="#intro" class="hero-btn">查看深度解析</a>
+            </div>
+        </section>
+
+        <div class="container main-layout">
+            <!-- Left Column -->
+            <div class="content-col">
+                <!-- Movie Info -->
+                <section id="intro">
+                    <div class="section-header">
+                        <h2 class="section-title">影片基础信息</h2>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>导演</label>
+                            <span>李玉</span>
+                        </div>
+                        <div class="info-item">
+                            <label>编剧</label>
+                            <span>李玉 / 方励</span>
+                        </div>
+                        <div class="info-item">
+                            <label>主演</label>
+                            <span>范冰冰 / 冯绍峰</span>
+                        </div>
+                        <div class="info-item">
+                            <label>上映年份</label>
+                            <span>2012年</span>
+                        </div>
+                        <div class="info-item">
+                            <label>类型</label>
+                            <span>悬疑 / 爱情 / 惊悚</span>
+                        </div>
+                        <div class="info-item">
+                            <label>时长</label>
+                            <span>99分钟</span>
+                        </div>
+                        <div class="info-item">
+                            <label>制片国家</label>
+                            <span>中国</span>
+                        </div>
+                        <div class="info-item">
+                            <label>评分参考</label>
+                            <span>豆瓣 6.5 / IMDB 5.1</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Articles -->
+                <section>
+                    <div class="section-header">
+                        <h2 class="section-title">深度影评与解析</h2>
+                        <a href="#" class="view-more">查看全部 &rarr;</a>
+                    </div>
+
+                    <article class="review-card">
+                        <img src="https://picsum.photos/seed/plot1/800/400" alt="二次曝光剧情解析" class="review-img">
+                        <div class="review-content">
+                            <div class="review-meta">剧情解析 · 2023-10-15</div>
+                            <h3 class="review-title">记忆的迷宫：解读《二次曝光》中的非线性叙事结构</h3>
+                            <p class="review-excerpt">影片通过蒙太奇手法将过去与现在交织，讲述了一个关于爱、背叛与自我救赎的故事。文章将详细拆解影片中多次出现的“二次曝光”隐喻，分析女主角宋其如何通过摄影记录并扭曲现实...</p>
+                            <div class="review-tags">
+                                <span class="tag">叙事手法</span>
+                                <span class="tag">心理学分析</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <img src="https://picsum.photos/seed/plot2/800/400" alt="二次曝光人物分析" class="review-img">
+                        <div class="review-content">
+                            <div class="review-meta">人物分析 · 2023-09-28</div>
+                            <h3 class="review-title">双重人格的具象化：范冰冰饰演的宋其</h3>
+                            <p class="review-excerpt">宋其这一角色集天真与残忍于一身，是典型的“分裂人格”设定。本文探讨李玉导演如何通过光影色调的变化（从冷色调到暖色调）来外化人物内心的动荡与转变。</p>
+                            <div class="review-tags">
+                                <span class="tag">角色解读</span>
+                                <span class="tag">表演技巧</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <img src="https://picsum.photos/seed/plot3/800/400" alt="二次曝光摄影美学" class="review-img">
+                        <div class="review-content">
+                            <div class="review-meta">视听语言 · 2023-08-12</div>
+                            <h3 class="review-title">光影与色彩：李玉镜头下的暧昧都市</h3>
+                            <p class="review-excerpt">影片大量运用了主观镜头和特写镜头，营造出一种眩晕感和压抑感。特别是片中对于北京城市景观的虚焦处理，隐喻了人物在巨大城市中的迷失感。</p>
+                            <div class="review-tags">
+                                <span class="tag">摄影美学</span>
+                                <span class="tag">色彩理论</span>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="section-title" style="font-size: 18px; margin-bottom: 20px;">热门标签</h3>
+                    <div class="tag-cloud">
+                        <a href="#">悬疑电影</a>
+                        <a href="#">范冰冰</a>
+                        <a href="#">冯小刚</a>
+                        <a href="#">李玉导演</a>
+                        <a href="#">国产电影</a>
+                        <a href="#">心理惊悚</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="section-title" style="font-size: 18px; margin-bottom: 20px;">相关推荐</h3>
+                    <ul class="rank-list">
+                        <li>
+                            <span class="rank-num">1</span>
+                            <span class="rank-title"><a href="#">唐山大地震</a></span>
+                        </li>
+                        <li>
+                            <span class="rank-num">2</span>
+                            <span class="rank-title"><a href="#">观音山</a></span>
+                        </li>
+                        <li>
+                            <span class="rank-num">3</span>
+                            <span class="rank-title"><a href="#">万物生长</a></span>
+                        </li>
+                        <li>
+                            <span class="rank-num">4</span>
+                            <span class="rank-title"><a href="#">二次曝光幕后花絮</a></span>
+                        </li>
+                        <li>
+                            <span class="rank-num">5</span>
+                            <span class="rank-title"><a href="#">芳华</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="section-title" style="font-size: 18px; margin-bottom: 20px;">常见问题 (FAQ)</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">《二次曝光》结局是什么意思？</div>
+                        <div class="faq-answer">影片结局暗示宋其可能已经死亡，或者她的意识存在于照片中。最后她再次按下快门，意味着记忆的循环或新的轮回开始，留给观众开放式的解读空间。</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">电影二次曝光是在哪里拍摄的？</div>
+                        <div class="faq-answer">主要取景于北京、上海等地，影片中大量的街头摄影场景捕捉了都市的繁华与疏离感。</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">这部电影适合什么人群观看？</div>
+                        <div class="faq-answer">本片包含惊悚、悬疑元素及心理剧情，适合喜欢非线性叙事、关注人物心理变化及文艺悬疑题材的观众。</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>光影解析</h4>
+                    <p>致力于为电影爱好者提供最专业、最深入的影视作品解读与评论。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <p><a href="#">关于我们</a></p>
+                    <p><a href="#">投稿指南</a></p>
+                    <p><a href="#">版权声明</a></p>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <p>订阅每周更新的影评周刊，不错过任何一部好电影。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 光影解析网. All Rights Reserved. 本站内容仅供学习交流使用，不用于商业目的。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
